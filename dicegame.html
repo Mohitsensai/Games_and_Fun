@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container { 
+			width: 70%; 
+			margin: auto; 
+			text-align: center; 
+		} 
+
+		.dice { 
+			text-align: center; 
+			display: inline-block; 
+			margin: 50px; 
+            
+		} 
+
+		body { 
+			background-image: linear-gradient(to left ,rgb(246, 57, 133),rgb(89, 110, 246)); 
+			margin: 0; 
+            overflow: hidden;
+		} 
+
+		h1 { 
+			margin: 50px; 
+			font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+			text-shadow: 4px 0 #85bdea; 
+			font-size: 4.5rem; 
+			color: #083ee1; 
+			text-align: center; 
+		} 
+
+		p { 
+			font-size: 3rem; 
+			color: #f4d8d8; 
+			font-family:'Times New Roman', Times, serif; 
+		} 
+
+		img { 
+			width: 100%; 
+		} 
+
+		.bottom { 
+			padding-top: 3px;
+            border-radius: 50%; 
+		} 
+
+		.btn { 
+			background: #78979f; 
+			font-family: "Indie Flower", cursive; 
+			border-radius: 70% rgb(248, 6, 6); 
+			color: #de0808; 
+			font-size: 20px; 
+            padding: 16px; 
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+			
+		} 
+        
+		.btn:hover { 
+			background: #df8218; 
+            color:rgb(18, 17, 17);
+			text-decoration: none; 
+		} 
+        
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Let's Play 🎲</h1>
+        <div class="dice">
+            <p class="Player1">Player1</p>
+            <img src="dice6.png"alt="dice6" class="img1">
+        </div>
+        <div class="dice">
+            <p class="Player2">Player2</p>
+            <img src="dice6.png"  alt="dice6" class="img2">
+        </div>
+    </div>
+    <div class="container button">
+        <button type="button" class="btn" onclick="RollTheDice()">Roll The Dice</button>
+    </div>
+    <div class="container button">
+        <button type="button" class="btn" onclick="editNames()">Edit Name</button>
+    </div>
+
+    <script>
+        var player1 = "Player1";
+        var player2 = "Player2";
+
+        function editNames() {
+            player1 = prompt("Change player1 Name");
+            player2 = prompt("Change player2 Name");
+
+            document.querySelector("p.Player1").innerHTML = player1;
+            document.querySelector("p.Player2").innerHTML = player2;
+        }
+
+        function RollTheDice() {
+            var diceNum1 = document.querySelector(".img1");
+            var diceNum2 = document.querySelector(".img2");
+
+            diceNum1.setAttribute("src","dice.gif")
+            diceNum2.setAttribute("src","dice.gif")
+            let result = document.querySelector('h1')
+
+            setTimeout(function () {
+                var randomNumber1 = Math.floor(Math.random() * 6) + 1;
+                var randomNumber2 = Math.floor(Math.random() * 6) + 1;
+
+                document.querySelector(".img1").setAttribute('src', 'dice' + randomNumber1 + ".png");
+                document.querySelector(".img2").setAttribute('src', 'dice' + randomNumber2 + ".png");
+
+                if (randomNumber1 == randomNumber2) {
+                    document.querySelector("h1").innerHTML = "Draw🤝!";
+                } else if (randomNumber1 < randomNumber2) {
+                    document.querySelector("h1").innerHTML = (player2 + " WINS😎! ");
+                } else {
+                    document.querySelector("h1").innerHTML = (player1 + " WINS😈! ");
+                }
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
